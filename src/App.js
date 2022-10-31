@@ -1,14 +1,14 @@
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
-import { Characters } from "./components/Characters";
+import React, { useEffect, useState}  from "react";
+import  Characters  from './components/Characters';
 
 function App() {
-  const [characters, setcharacters] = useState([]);
-  const initialUrl = "https://xivapi.com/item";
+  const [character, setcharacters] = useState([]);
+  const initialUrl = "https://reqres.in/api/users?page=1}";
   const fetchCharacters = (Url) => {
     fetch(Url)
       .then((response) => response.json())
-      .then((data) => setcharacters(data.Results))
+      .then((data) => setcharacters(data.data))
       .catch((error) => console.log(error));
   };
   useEffect(() => {fetchCharacters(initialUrl)}, []);
@@ -16,8 +16,8 @@ function App() {
   return (
     <>
       <Navbar brand={"Videojuegos"} />
-      <div className="container">
-          <Characters characters = {characters} />
+      <div className="container mt-5">
+          <Characters characters = {character} />
       </div>
       
     </>
