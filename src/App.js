@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import React, { useEffect, useState}  from "react";
 import  Characters  from './components/Characters';
 import  Pagination  from "./components/Pagination";
-import axios from 'axios';
+
 
 function App() {
   const [datos, setDatos] = React.useState([]);
@@ -18,10 +18,13 @@ function App() {
 
   const Siguiente = async() =>{  
     try{
-        const Peticion = await axios.get(`https://reqres.in/api/users?page=${2}`); 
-        const data = await Peticion.data; 
-        //console.log(Resultado);
-        setcharacters(data.data);
+        
+        fetch(`https://reqres.in/api/users?page=${2}`)
+        .then((response) => response.json())
+        .then((data) => setcharacters(data.data))
+        .catch((error) => console.log(error));
+
+        
     }catch(e){
         console.log(e);
     }
@@ -29,10 +32,10 @@ function App() {
 
 const Anterior = async() =>{
     try{
-        const Peticion = await axios.get(`https://reqres.in/api/users?page=${1}`); 
-        const data = await Peticion.data; 
-        //console.log(Resultado);
-        setcharacters(data.data);
+      fetch(`https://reqres.in/api/users?page=${1}`)
+      .then((response) => response.json())
+      .then((data) => setcharacters(data.data))
+      .catch((error) => console.log(error));
     }catch(e){
         console.log(e);
     }
