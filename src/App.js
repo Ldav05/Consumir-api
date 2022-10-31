@@ -5,7 +5,6 @@ import  Pagination  from "./components/Pagination";
 
 
 function App() {
-  const [datos, setDatos] = React.useState([]);
   const [character, setcharacters] = useState([]);
   const initialUrl = "https://reqres.in/api/users?page=1}";
   const fetchCharacters = (Url) => {
